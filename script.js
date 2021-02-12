@@ -50,7 +50,7 @@ toogleButton.addEventListener('click', toogleTheme);
 // Запрос на API
 function getCurrentWeather() {
 	// погода сейчас
-	fetch(`http://api.openweathermap.org/data/2.5/weather?q=${userCityInput.value}&units=metric&lang=ru&appid=8bf920eea1ae9d71a955d21514276060`)
+	fetch(`https://api.openweathermap.org/data/2.5/weather?q=${userCityInput.value}&units=metric&lang=ru&appid=8bf920eea1ae9d71a955d21514276060`)
 		.then(function (resp) { return resp.json() })
 		.then(function (data) {
 			cardFeelUp(data);
@@ -108,7 +108,7 @@ function cardFeelUp(data) {
 	cityTime.textContent = getTime(data.dt, data.timezone);
 	tCurrent.textContent = Math.round(data.main.temp) + '°';
 	directionArrow.style.transform = `rotate(${data.wind.deg}deg)`;
-	wIcon.src = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+	wIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 	wLogo.textContent = getWindInfo(data, 0);
 	wInfo.textContent = getWindInfo(data, 1);
 	weatherMainCondition.textContent = data.weather[0].description;
@@ -137,7 +137,7 @@ function feelUpDayCard(data) {
 			let dayValue = new Date(data.list[i].dt * 1000);
 			if (dayTarget.getDay() != dayValue.getDay() && dayValue.getUTCHours() == 3 || dayTarget.getDay() != dayValue.getDay() && dayValue.getUTCHours() == 15) {
 
-				dayBlockList[counter].querySelector('img').src = `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
+				dayBlockList[counter].querySelector('img').src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
 				dayBlockList[counter].querySelector('.day-block-temp').textContent = Math.round(data.list[i].main.temp) + '°C';
 				dayBlockList[counter].querySelector('.day-block-desc').textContent = data.list[i].weather[0].description;
 				dayBlockList[counter].querySelector('.day-block-humidity').textContent = `влажность: ${data.list[i].main.humidity}%`;
@@ -171,7 +171,7 @@ function feelUpDayCard(data) {
 				clonedDayBlock.querySelector('.date').textContent = dayValue.getUTCDate() + ' ' + getMonth(dayValue.getUTCMonth());
 				nightContent.style.background = '#7e7e7e1c';
 				nightContent.querySelector('.day-block-status').textContent = 'ночь';
-				nightContent.querySelector('img').src = `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
+				nightContent.querySelector('img').src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
 				nightContent.querySelector('.day-block-temp').textContent = Math.round(data.list[i].main.temp) + '°C';
 				nightContent.querySelector('.day-block-desc').textContent = data.list[i].weather[0].description;
 				nightContent.querySelector('.day-block-humidity').textContent = `влажность: ${data.list[i].main.humidity}%`;
@@ -181,7 +181,7 @@ function feelUpDayCard(data) {
 				nightContent.querySelector('.day-presure').textContent = data.list[i].main.pressure + ' гПа';
 
 				dayContent.querySelector('.day-block-status').textContent = 'день';
-				dayContent.querySelector('img').src = `http://openweathermap.org/img/wn/${data.list[i + 3].weather[0].icon}@2x.png`;
+				dayContent.querySelector('img').src = `https://openweathermap.org/img/wn/${data.list[i + 3].weather[0].icon}@2x.png`;
 				dayContent.querySelector('.day-block-temp').textContent = Math.round(data.list[i + 3].main.temp) + '°C';
 				dayContent.querySelector('.day-block-desc').textContent = data.list[i + 3].weather[0].description;
 				dayContent.querySelector('.day-block-humidity').textContent = `влажность: ${data.list[i + 3].main.humidity}%`;
@@ -239,7 +239,7 @@ function createMoreInfo(data) {
 		for (let i = 0; i < jumperList.length; i++) {
 			// Jumper
 			jumperList[i].querySelector('.weather-jumper-temp').textContent = Math.round(data.list[i].main.temp) + '°C';
-			jumperList[i].querySelector('.jumper-weather-img').src = `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
+			jumperList[i].querySelector('.jumper-weather-img').src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
 			// определяем высоту блока относительно температур
 			if (maxTemp > -10 && maxTemp < 5) {
 				nodeJumperPaddingPosition = 60 - data.list[i].main.temp * 4;
@@ -265,7 +265,7 @@ function createMoreInfo(data) {
 			let clonedWeatherJumper = weatherJumper.cloneNode(true);
 			// clonedWeatherJumper.style.margin = `${16}px`;
 			clonedWeatherJumper.querySelector('.weather-jumper-temp').textContent = Math.round(data.list[i].main.temp) + '°C';
-			clonedWeatherJumper.querySelector('.jumper-weather-img').src = `http://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
+			clonedWeatherJumper.querySelector('.jumper-weather-img').src = `https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png`;
 			if (i != 0) {
 				clonedWeatherJumper.querySelector('.weather-jumper').style.margin = '0 1px 0 1px';
 			}
